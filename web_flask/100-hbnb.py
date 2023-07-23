@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""Starts a Flask web application.
-The application listens on 0.0.0.0, port 5000.
+"""
+Starts a Flask web application listening on 0.0.0.0, port 5000
 Routes:
-    /hbnb: HBnB home page.
+    /hbnb: display a HTML page like 8-index.html, done during
+    the 0x01. AirBnB clone - Web static project
 """
 from models import storage
 from flask import Flask
@@ -13,7 +14,7 @@ app = Flask(__name__)
 
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
-    """Displays the main HBnB filters HTML page."""
+    """ Displays the HTML page """
     states = storage.all("State")
     amenities = storage.all("Amenity")
     places = storage.all("Place")
@@ -23,7 +24,7 @@ def hbnb():
 
 @app.teardown_appcontext
 def teardown(exc):
-    """Remove the current SQLAlchemy session."""
+    """ Terminate the SQLAlchemy session """
     storage.close()
 
 

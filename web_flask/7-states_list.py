@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Importing Flask to run the web app"""
+""" Improve engines """
 from flask import Flask, render_template
 from models import storage
 from models.state import State
@@ -10,14 +10,14 @@ app = Flask(__name__)
 
 @app.route("/states_list", strict_slashes=False)
 def display_states():
-    """Render state_list html page to display States created"""
+    """ Display States """
     states = storage.all()
     return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext
 def teardown(self):
-    """Method to remove current SQLAlchemy Session"""
+    """ Terminate SQLAlchemy Session """
     storage.close()
 
 
